@@ -1,0 +1,113 @@
+/* Page-specific styles for contacts.html */
+
+.contact-form {
+  display: grid;
+  gap: 1rem;
+  max-width: 640px;
+  margin-top: 2rem;
+}
+
+.contact-form label {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-alt);
+  color: var(--text-primary);
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.notification {
+  display: none;
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  border: 1px solid #acf0f5;
+  background-color: #e6fafb;
+  color: #03434f;
+  margin-bottom: 1.5rem;
+}
+
+.notification.success {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .contact-form {
+    margin-top: 1rem;
+  }
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.brand {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Bottom row: form on left, map on right */
+    .form-map-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .contact-form {
+      margin-top: 0;
+    }
+
+    .map-standalone {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      height: 100%;
+    }
+
+    .map-standalone iframe {
+      display: block;
+      width: 100%;
+      min-height: 420px;
+      height: 100%;
+      border: 0;
+    }
+
+    @media (max-width: 768px) {
+      .form-map-row {
+        grid-template-columns: 1fr;
+      }
+      .map-standalone iframe {
+        min-height: 260px;
+      }
+    }

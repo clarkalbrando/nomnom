@@ -1,0 +1,66 @@
+/* General Page Styling */
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f9ff; /* very light blue */
+    color: #333;
+}
+
+/* Shared Layout Sections */
+.header,
+.navbar,
+.main,
+.footer {
+    width: 85%;
+    margin: 20px auto;
+    border-radius: 8px;
+}
+
+/* Header */
+.header {
+    background-color: #1f4e79; /* professional dark blue */
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color: #2e86c1;
+    padding: 15px;
+    text-align: center;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content */
+.main {
+    background-color: white;
+    padding: 40px;
+    min-height: 300px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+/* Footer */
+.footer {
+    background-color: #1f4e79;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+}
