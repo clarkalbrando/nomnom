@@ -296,4 +296,30 @@
   .button {
     width: 100%;
   }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .awards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skill-card,
+  .award-card,
+  .contact-card {
+    padding: 1.5rem;
+  }
+
+  .hero-list {
+    margin: 1.5rem 0 0;
+  }
+
+  .organization-item {
+    padding: 1.25rem;
+  }
 }

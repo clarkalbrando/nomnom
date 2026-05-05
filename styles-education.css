@@ -40,6 +40,18 @@
 }
 
 @media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 1.5rem;
+  }
+
+  .nav {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
   .timeline-item {
     grid-template-columns: 1fr;
     gap: 0.5rem;
@@ -48,6 +60,27 @@
 
   .timeline-label {
     margin-bottom: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav {
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .nav a {
+    padding: 0.75rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .timeline {
+    max-width: 100%;
+  }
+
+  .timeline-item {
+    margin-bottom: 2rem;
   }
 }
 

@@ -71,9 +71,70 @@
     .project-link:hover {
       background: #5858ff;
     }
-    @media (max-width: 680px) {
+    @media (max-width: 1024px) {
+      .portfolio-list {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0 1.5rem;
+      }
+
+      .nav {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .portfolio-list {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .portfolio-info {
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav {
+        gap: 0.5rem;
+        padding: 0.75rem 1rem;
+      }
+
+      .nav a {
+        padding: 0.75rem;
+        width: 100%;
+        text-align: center;
+      }
+
+      .portfolio-item {
+        border-radius: 12px;
+      }
+
       .portfolio-image img {
-        height: 160px;
+        height: 140px;
+      }
+
+      .portfolio-info {
+        padding: 1rem;
+      }
+
+      .portfolio-info h3 {
+        font-size: 1rem;
+      }
+
+      .portfolio-info p {
+        font-size: 0.9rem;
+      }
+
+      .project-link {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
       }
     }
 
