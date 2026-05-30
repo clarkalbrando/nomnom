@@ -110,19 +110,47 @@ img {
   border-bottom: 1px solid var(--border-color);
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
   box-shadow: var(--shadow);
 }
 
-.nav {
+.nav-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1.5rem 2rem;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+
+/* Brand + burger sit on the same row; nav fills rest on desktop */
+.brand {
+  flex: 0 0 auto;
+}
+
+/* On desktop the nav links come after and fill remaining space */
+.nav-container .nav {
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.brand {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text-primary) !important;
+  border-bottom: none !important;
+  white-space: nowrap;
+}
+
+.brand:hover {
+  color: var(--accent-color) !important;
+}
+
+.nav {
   display: flex;
   gap: 2rem;
   align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
 }
 
 .nav a {
@@ -131,6 +159,7 @@ img {
   padding: 0.5rem 0;
   border-bottom: 2px solid transparent;
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 .nav a:hover {
@@ -142,6 +171,45 @@ img {
   color: var(--accent-color);
   border-bottom-color: var(--accent-color);
   font-weight: 700;
+}
+
+/* Burger button — hidden on desktop */
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1100;
+  flex-shrink: 0;
+}
+
+.burger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--text-primary);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+/* Animated X when open */
+.burger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.burger.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.burger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* ============================================
@@ -510,27 +578,81 @@ img {
   }
 }
 
+/* ── Burger menu breakpoint ── */
 @media (max-width: 768px) {
-  h1 {
-    font-size: 2.5rem;
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 1.875rem; }
+
+  /* Show burger button */
+  .burger {
+    display: flex;
+    margin-left: auto; /* push burger to right of brand */
   }
 
-  h2 {
-    font-size: 1.875rem;
+  /* nav-container: brand left, burger right, nav takes full row below */
+  .nav-container {
+    padding: 0.85rem 1.25rem;
+    position: relative;
+    flex-wrap: wrap;           /* allow nav to wrap to next row */
+    align-items: center;
   }
 
+  /* Nav becomes a slide-down full-width drawer */
+  .nav {
+    order: 3;                  /* always below brand + burger */
+    flex: 0 0 100%;            /* full width */
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    border-top: 0px solid transparent;
+    justify-content: flex-start;
+  }
+
+  .nav.open {
+    max-height: 400px;
+    border-top: 1px solid var(--border-color);
+    margin-top: 0.5rem;
+  }
+
+  .nav a {
+    display: block;
+    padding: 0.9rem 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+    border-left: 3px solid transparent;
+    width: 100%;
+    text-align: left;
+    font-size: 1rem;
+  }
+
+  .nav a:last-child {
+    border-bottom: none;
+  }
+
+  .nav a:hover,
+  .nav a.active {
+    background-color: rgba(111, 110, 255, 0.08);
+    color: var(--accent-color);
+    border-left-color: var(--accent-color);
+    padding-left: calc(1.25rem - 3px);
+  }
+
+  /* Desktop nav override reset */
+  .nav-container .nav {
+    flex: 0 0 100%;
+    justify-content: flex-start;
+  }
+
+  /* Layout adjustments */
   .hero {
-    padding: 2rem 1.5rem;
+    padding: 2rem 1.25rem;
     gap: 2rem;
   }
 
   .hero-copy h1 {
-    font-size: 2.5rem;
-  }
-
-  .nav {
-    gap: 1rem;
-    padding: 1rem 1.5rem;
+    font-size: 2.25rem;
   }
 
   .about-grid {
@@ -554,7 +676,7 @@ img {
   }
 
   .section {
-    padding: 2rem 1.5rem;
+    padding: 2rem 1.25rem;
   }
 
   .card-grid,
@@ -570,6 +692,7 @@ img {
 
   .button {
     width: 100%;
+    text-align: center;
   }
 
   .contact-grid {
@@ -582,28 +705,12 @@ img {
     --font-size-base: 15px;
   }
 
-  h1 {
-    font-size: 2rem;
-  }
+  h1 { font-size: 1.9rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.2rem; }
 
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  h3 {
-    font-size: 1.25rem;
-  }
-
-  .nav {
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 0.75rem 1rem;
-  }
-
-  .nav a {
-    padding: 0.75rem;
-    width: 100%;
-    text-align: center;
+  .nav-container {
+    padding: 0.7rem 1rem;
   }
 
   .hero {
@@ -612,7 +719,7 @@ img {
   }
 
   .hero-copy h1 {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
 
   .hero-image img {
@@ -627,15 +734,20 @@ img {
   .project-card,
   .skill-card,
   .contact-card {
-    padding: 1.5rem;
+    padding: 1.25rem;
   }
 
   .button {
-    padding: 0.75rem 1.5rem;
+    padding: 0.75rem 1.25rem;
     font-size: 0.95rem;
   }
 
   .timeline-item {
     margin-bottom: 2rem;
+  }
+
+  .footer {
+    padding: 2rem 1rem;
+    font-size: 0.875rem;
   }
 }

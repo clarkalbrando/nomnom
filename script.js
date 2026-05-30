@@ -1,4 +1,35 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // ── Burger menu ──────────────────────────────────────
+  const burgerBtn = document.getElementById('burger-btn');
+  const navMenu   = document.querySelector('.nav');
+
+  if (burgerBtn && navMenu) {
+    burgerBtn.addEventListener('click', () => {
+      const isOpen = navMenu.classList.toggle('open');
+      burgerBtn.classList.toggle('open', isOpen);
+      burgerBtn.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close menu when a nav link is clicked
+    navMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('open');
+        burgerBtn.classList.remove('open');
+        burgerBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!burgerBtn.contains(e.target) && !navMenu.contains(e.target)) {
+        navMenu.classList.remove('open');
+        burgerBtn.classList.remove('open');
+        burgerBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // ── Active nav link highlighting ─────────────────────
   const navLinks = document.querySelectorAll('.nav a');
   const sections = Array.from(document.querySelectorAll('main section[id]'));
 
@@ -32,15 +63,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  highlightCurrentSection();
-  window.addEventListener('scroll', highlightCurrentSection);
+  if (sections.length) {
+    highlightCurrentSection();
+    window.addEventListener('scroll', highlightCurrentSection);
+  }
 
+  // ── Footer year ───────────────────────────────────────
   const yearElement = document.getElementById('current-year');
   if (yearElement) {
     yearElement.textContent = new Date().getFullYear();
   }
 
-  const contactForm = document.getElementById('contact-form');
+  // ── Contact form ──────────────────────────────────────
+  const contactForm    = document.getElementById('contact-form');
   const contactMessage = document.getElementById('contact-message');
 
   const notifyVisitor = message => {
@@ -56,8 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (contactForm) {
     contactForm.addEventListener('submit', event => {
       event.preventDefault();
-      const name = contactForm.elements.name.value.trim();
-      const email = contactForm.elements.email.value.trim();
+      const name    = contactForm.elements.name.value.trim();
+      const email   = contactForm.elements.email.value.trim();
       const message = contactForm.elements.message.value.trim();
 
       if (!name || !email || !message) {
